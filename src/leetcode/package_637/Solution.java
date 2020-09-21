@@ -1,4 +1,4 @@
-package package_637;
+package leetcode.package_637;
 
 import org.junit.jupiter.api.Test;
 

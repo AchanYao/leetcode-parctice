@@ -1,4 +1,4 @@
-package package_21;
+package leetcode.package_21;
 
 /**
  * @author Achan

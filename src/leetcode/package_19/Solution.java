@@ -1,4 +1,4 @@
-package package_19;
+package leetcode.package_19;
 
 import java.util.Objects;
 

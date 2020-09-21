@@ -1,4 +1,4 @@
-package package_9;
+package leetcode.package_9;
 
 public class Solution {
     

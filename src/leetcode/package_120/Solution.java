@@ -1,4 +1,4 @@
-package package_120;
+package leetcode.package_120;
 
 import java.util.Arrays;
 import java.util.List;

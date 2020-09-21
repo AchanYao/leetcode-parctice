@@ -1,4 +1,4 @@
-package package_1195;
+package leetcode.package_1195;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

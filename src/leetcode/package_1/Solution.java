@@ -1,4 +1,4 @@
-package package_1;
+package leetcode.package_1;
 
 /**
  * Solution
