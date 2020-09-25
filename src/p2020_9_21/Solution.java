@@ -8,87 +8,71 @@ import java.util.Stack;
 
 /**
  * 58笔试
+ *
  * @author Achan
  * @date 2020/9/21
  */
 public class Solution {
 
-    public int calculate (String input) {
-        // TODO 90%
-        input = input.replace(" ", "");
-        Stack<Integer> n = new Stack<>();
-        Stack<Character> s = new Stack<>();
-        boolean flag = false;
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            if (c > '9' || c < '0') {
-                if (c == '-' && n.size() == s.size()) {
-                    flag = true;
-                    continue;
+    public int calculate(String s) {
+        Stack<Integer> numStack = new Stack<>();
+
+        char lastOp = '+';
+        char[] arr = s.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == ' ') {
+                continue;
+            }
+
+            if (Character.isDigit(arr[i])) {
+                int tempNum = arr[i] - '0';
+                while (++i < arr.length && Character.isDigit(arr[i])) {
+                    tempNum = tempNum * 10 + (arr[i] - '0');
                 }
-                if (!s.empty()) {
-                    char t = s.peek();
-                    if ((c == '*' || c == '/') && (t == '+' || t == '-')) {
-                        // 栈顶元素优先级低，不计算
-                    } else {
-                        try {
-                            n.push(calculate(n.pop(), n.pop(), s.pop()));
-                        } catch (IllegalAccessException e) {
-                            return 0;
-                        }
-                    }
-                }
-                s.push(c);
-            } else {
-                // 数字
-                int end = i;
-                for (; end < input.length(); end++) {
-                    if (input.charAt(end) > '9' || input.charAt(end) < '0') {
-                        break;
-                    }
-                }
-                int temp = Integer.parseInt(input.substring(i, end));
-                if (flag) {
-                    n.push(-temp);
-                    flag = false;
+                i--;
+
+                if (lastOp == '+') {
+                    numStack.push(tempNum);
+                } else if (lastOp == '-') {
+                    numStack.push(-tempNum);
                 } else {
-                    n.push(temp);
+                    numStack.push(res(lastOp, numStack.pop(), tempNum));
                 }
-                i = end - 1;
+            } else {
+                lastOp = arr[i];
             }
         }
 
-        while (!s.empty()) {
-            try {
-                n.push(calculate(n.pop(), n.pop(), s.pop()));
-            } catch (IllegalAccessException e) {
-                return 0;
-            }
+        int ans = 0;
+        for (int num : numStack) {
+            ans += num;
         }
-        return n.pop();
+        return ans;
     }
 
-    public int calculate(int a, int b, char c) throws IllegalAccessException {
-        switch (c) {
-            case '+':
-                return b + a;
-            case '-':
-                return b - a;
-            case '/':
-                return b / a;
-            case '*':
-                return b * a;
-            default:
-                throw new IllegalAccessException("错误运算符");
+    private int res(char op, int a, int b) {
+        if (op == '*') {
+            return a * b;
+        } else if (op == '/') {
+            return a / b;
+        } else if (op == '+') {
+            return a + b;
+        } else {
+            return a - b;
         }
     }
 
+    /**
+     * 1. 1*2-3/4+5*6-7*8+9/10
+     * 2. 2-0+30-56+0
+     * 3. -24
+     */
     @Test
     public void calculateTest() {
-        System.out.println(calculate("100 + 2 * 3 + -11"));
+        System.out.println(calculate("1*2-3/4+5*6-7*8+9/10"));
     }
 
-    public int[] countBits (int num) {
+    public int[] countBits(int num) {
         // write code here
         int[] result = new int[num + 1];
         for (int i = 0; i <= num; i++) {
@@ -103,11 +87,12 @@ public class Solution {
     }
 
 
-    public ArrayList<Integer> mergerArrays (ArrayList<Integer> arrayA, ArrayList<Integer> arrayB) {
+    public ArrayList<Integer> mergerArrays(ArrayList<Integer> arrayA, ArrayList<Integer> arrayB) {
         // write code here
         ArrayList<Integer> result = new ArrayList<>(Math.min(arrayA.size(), arrayB.size()));
 
-        int i = 0; int j = 0;
+        int i = 0;
+        int j = 0;
         while (i < arrayA.size() && j < arrayB.size()) {
             int a = arrayA.get(i);
             int b = arrayB.get(j);

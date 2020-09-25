@@ -1,4 +1,4 @@
-package ds;
+package ds.heap;
 
 import org.junit.jupiter.api.Test;
 
