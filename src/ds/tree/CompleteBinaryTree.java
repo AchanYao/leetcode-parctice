@@ -17,10 +17,6 @@ public class CompleteBinaryTree<E extends Comparable<E>> extends AbstractBinaryT
     }
 
     @Override
-    public boolean search(E e) {
-        return search(getRoot(), e) != null;
-    }
-
     protected TreeNode<E> search(TreeNode<E> treeNode, E e) {
         if (treeNode == null) {
             return null;

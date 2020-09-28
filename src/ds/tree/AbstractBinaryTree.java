@@ -6,7 +6,7 @@ import java.util.*;
  * @author Achan
  * @date 2020/9/23
  */
-public abstract class AbstractBinaryTree<E extends Comparable<E>> implements Tree<E> {
+public abstract class AbstractBinaryTree<E> implements Tree<E> {
 
 
     protected TreeNode<E> root;
@@ -26,6 +26,19 @@ public abstract class AbstractBinaryTree<E extends Comparable<E>> implements Tre
         this.root = null;
         this.size = 0;
     }
+
+    @Override
+    public TreeNode<E> search(E e) {
+        return search(getRoot(), e);
+    }
+
+    /**
+     * 以指定节点作为根节点查找元素并返回所在节点
+     * @param root 根节点
+     * @param e 需要查找的元素
+     * @return 元素所在节点，不存在返回null
+     */
+    protected abstract TreeNode<E> search(TreeNode<E> root, E e);
 
     @Override
     public List<E> inTraverse() {
@@ -49,7 +62,7 @@ public abstract class AbstractBinaryTree<E extends Comparable<E>> implements Tre
         return preTraverse(root, list);
     }
 
-    protected List<E> preTraverse(TreeNode<E> root, List<E> result) {
+    private List<E> preTraverse(TreeNode<E> root, List<E> result) {
         if (root == null) {
             return result;
         }
@@ -65,7 +78,7 @@ public abstract class AbstractBinaryTree<E extends Comparable<E>> implements Tre
         return postTraverse(root, list);
     }
 
-    protected List<E> postTraverse(TreeNode<E> root, List<E> result) {
+    private List<E> postTraverse(TreeNode<E> root, List<E> result) {
         if (root == null) {
             return null;
         }
@@ -77,7 +90,7 @@ public abstract class AbstractBinaryTree<E extends Comparable<E>> implements Tre
 
     @Override
     public Iterator<E> iterator() {
-        return inTraverse().iterator();
+        return bfs().iterator();
     }
 
     protected List<E> bfs() {
@@ -109,9 +122,5 @@ public abstract class AbstractBinaryTree<E extends Comparable<E>> implements Tre
         dfs(root.left, result);
         dfs(root.right, result);
         return result;
-    }
-
-    public boolean hasChildren(TreeNode<E> root) {
-        return root != null && (root.right != null || root.left != null);
     }
 }

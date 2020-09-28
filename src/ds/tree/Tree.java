@@ -9,11 +9,20 @@ import java.util.List;
 public interface Tree<E> extends Iterable<E> {
 
     /**
-     * 查找元素是否存在
+     * 查找元素所在节点
+     * @param e 需要查找的元素
+     * @return 元素节点，不存在为null
+     */
+    TreeNode<E> search(E e);
+
+    /**
+     * 是否包含该元素
      * @param e 需要查找的元素
      * @return 是否存在
      */
-    boolean search(E e);
+    default boolean contains(E e) {
+        return search(e) != null;
+    }
 
     /**
      * insert a new element
