@@ -1,5 +1,7 @@
 package offer;
 
+import leetcode.ds.ListNode;
+
 import java.util.Stack;
 
 /**

@@ -1,5 +1,7 @@
 package leetcode.package_21;
 
+import leetcode.ds.ListNode;
+
 /**
  * @author Achan
  * @date 2020/9/16
@@ -23,12 +25,4 @@ public class Solution {
         temp.next = l1 == null ? l2 : l1;
         return head.next;
     }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
