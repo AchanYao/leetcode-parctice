@@ -17,6 +17,11 @@ public class CompleteBinaryTree<E extends Comparable<E>> extends AbstractBinaryT
     }
 
     @Override
+    protected TreeNode<E> createNewNode(E e) {
+        return new TreeNode<>(e);
+    }
+
+    @Override
     protected TreeNode<E> search(TreeNode<E> treeNode, E e) {
         if (treeNode == null) {
             return null;
@@ -34,7 +39,7 @@ public class CompleteBinaryTree<E extends Comparable<E>> extends AbstractBinaryT
     @Override
     public boolean insert(E e) {
         if (size == 0) {
-            root = new TreeNode<>(e);
+            root = createNewNode(e);
             size++;
             return true;
         }
@@ -59,9 +64,9 @@ public class CompleteBinaryTree<E extends Comparable<E>> extends AbstractBinaryT
             parent = root;
         }
         if (bytes[0] == 0) {
-            parent.right = new TreeNode<>(e);
+            parent.right = createNewNode(e);
         } else {
-            parent.left = new TreeNode<>(e);
+            parent.left = createNewNode(e);
         }
         size++;
         return true;

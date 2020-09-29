@@ -12,6 +12,13 @@ public abstract class AbstractBinaryTree<E> implements Tree<E> {
     protected TreeNode<E> root;
     protected int size;
 
+    /**
+     * 创建一个值为e的树节点
+     * @param e 节点元素
+     * @return 所创建的节点
+     */
+    protected abstract TreeNode<E> createNewNode(E e);
+
     public TreeNode<E> getRoot() {
         return root;
     }

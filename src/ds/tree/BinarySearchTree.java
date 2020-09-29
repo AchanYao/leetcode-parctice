@@ -3,7 +3,9 @@ package ds.tree;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -18,15 +20,10 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractBinaryTre
     }
 
     @Override
-    public boolean contains(E e) {
-        return false;
-    }
-
-    @Override
     public boolean insert(E e) {
         if (this.root == null) {
             size++;
-            this.root = new TreeNode<>(e);
+            this.root = createNewNode(e);
             return true;
         }
         return insert(e, this.root);
@@ -35,7 +32,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractBinaryTre
     private boolean insert(E e, TreeNode<E> root) {
         if (root.element.compareTo(e) > 0) {
             if (root.left == null) {
-                root.left = new TreeNode<>(e);
+                root.left = createNewNode(e);
                 size++;
                 return true;
             } else {
@@ -43,7 +40,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractBinaryTre
             }
         } else {
             if (root.right == null) {
-                root.right = new TreeNode<>(e);
+                root.right = createNewNode(e);
                 size++;
                 return true;
             } else {
@@ -108,12 +105,22 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractBinaryTre
             }
             current.element = rightMostMin.element;
             if (rightMostMin.element.compareTo(rightMostMinParent.element) > 0) {
-                rightMostMinParent.right = null;
+                rightMostMinParent.right = rightMostMin.left;
             } else {
-                rightMostMinParent.left = null;
+                rightMostMinParent.left = rightMostMin.left;
             }
+            balancePath(rightMostMinParent.element);
         }
+        size--;
         return true;
+    }
+
+    protected void balancePath(E e) {
+    }
+
+    @Override
+    protected TreeNode<E> createNewNode(E e) {
+        return new TreeNode<>(e);
     }
 
     @Override
@@ -129,6 +136,27 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractBinaryTre
         } else {
             return search(root.right, e);
         }
+    }
+
+    /**
+     * the path from root to e
+     * @param e element need to arrive
+     * @return the path from to root if the tree not contains the element will return null
+     */
+    public List<TreeNode<E>> path(E e) {
+        List<TreeNode<E>> list = new ArrayList<>(size);
+        TreeNode<E> current = this.root;
+        while (current != null) {
+            list.add(current);
+            if (current.element.compareTo(e) > 0) {
+                current = current.left;
+            } else if (current.element.equals(e)) {
+                return list;
+            } else {
+                current = current.right;
+            }
+        }
+        return null;
     }
 }
 
