@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author Achan
  * @date 2020/9/20
  */
-public class Solution {
+public class Solution637 {
     public int findNumberOfLIS(int[] nums) {
         int n = nums.length;
         if (n < 2) {

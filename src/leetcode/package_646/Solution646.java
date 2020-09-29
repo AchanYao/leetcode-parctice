@@ -7,7 +7,7 @@ import java.util.Comparator;
  * @author Achan
  * @date 2020/9/20
  */
-public class Solution {
+public class Solution646 {
 
     public int findLongestChain(int[][] pairs) {
         int n = pairs.length;

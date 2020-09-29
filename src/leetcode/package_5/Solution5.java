@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @author Achan
  * @date 2020/9/16
  */
-public class Solution {
+public class Solution5 {
     public String longestPalindrome(String s) {
         // TODO dp优化
         int n = s.length();

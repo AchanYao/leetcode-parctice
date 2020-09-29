@@ -3,7 +3,7 @@ package leetcode.package_3;
 /**
  * Solution
  */
-public class Solution {
+public class Solution3 {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int m = nums1.length, n = nums2.length;

@@ -4,7 +4,7 @@ package leetcode.package_7;
  * leetcode_7 整数反转
  *
  */
-public class Solution {
+public class Solution7 {
 
     public int reverse(int x) {
         int res = 0;

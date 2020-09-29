@@ -3,7 +3,7 @@ package leetcode.package_2;
 /**
  * Solution
  */
-public class Solution {
+public class Solution2 {
 
     public int lengthOfLongestSubstring(String s) {
         int result = 0;

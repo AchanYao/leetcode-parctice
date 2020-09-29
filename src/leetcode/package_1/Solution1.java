@@ -3,7 +3,7 @@ package leetcode.package_1;
 /**
  * Solution
  */
-public class Solution {
+public class Solution1 {
 
     public int[] twoSum(int[] sums, int target) {
         for (int i = 0; i < sums.length; i++) {

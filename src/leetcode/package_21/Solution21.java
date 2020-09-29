@@ -6,7 +6,7 @@ import leetcode.ds.ListNode;
  * @author Achan
  * @date 2020/9/16
  */
-public class Solution {
+public class Solution21 {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode head = new ListNode(-1);
         ListNode temp = head;

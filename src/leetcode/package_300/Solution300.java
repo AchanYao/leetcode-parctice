@@ -1,8 +1,10 @@
 package leetcode.package_300;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 
-public class Solution {
+public class Solution300 {
     public int lengthOfLIS(int[] nums) {
         if (nums.length <= 1) {
             return nums.length;
@@ -24,8 +26,8 @@ public class Solution {
         return result;
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.lengthOfLIS(new int[] { 10, 9, 2, 5, 3, 7, 101, 18 }));
+    @Test
+    public void lengthOfLISTest() {
+        System.out.println(lengthOfLIS(new int[] { 10, 9, 2, 5, 3, 7, 101, 18 }));
     }
 }

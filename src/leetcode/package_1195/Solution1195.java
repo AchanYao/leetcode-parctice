@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
  * @author Achan
  * @date 2020/9/19
  */
-public class Main {
+public class Solution1195 {
 
     public static void main(String[] args) {
         FizzBuzz fizzBuzz = new FizzBuzz(15);

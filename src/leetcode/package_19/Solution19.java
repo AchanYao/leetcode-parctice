@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Achan
  * @date 2020/9/16
  */
-public class Solution {
+public class Solution19 {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode node = head;
