@@ -1,4 +1,4 @@
-package leetcode.package_637;
+package leetcode.package_673;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author Achan
  * @date 2020/9/20
  */
-public class Solution637 {
+public class Solution673 {
     public int findNumberOfLIS(int[] nums) {
         int n = nums.length;
         if (n < 2) {
@@ -61,6 +61,6 @@ public class Solution637 {
     @Test
     public void findNumberOfLISTest() {
         System.out.println(findNumberOfLIS(new int[]
-                {100, 90, 80, 70, 60, 50, 60, 70, 80, 90, 100}));
+                {1,3,5,4,7}));
     }
 }
