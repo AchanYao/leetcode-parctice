@@ -1,34 +1,39 @@
 package leetcode.package_1;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.HashMap;
+
 /**
  * Solution
  */
 public class Solution1 {
 
-    public int[] twoSum(int[] sums, int target) {
-        for (int i = 0; i < sums.length; i++) {
-            int temp = search(sums, target - sums[i], i);
-            if (temp != -1) {
-                return new int[] { i, temp };
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>(nums.length);
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], i);
+            if (map.containsKey(target - nums[i])) {
+                int val = map.get(target - nums[i]);
+                if (val != i) {
+                    return new int[]{i, val};
+                }
+            }
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                int val = map.get(target - nums[i]);
+                if (val != i) {
+                    return new int[]{i, val};
+                }
             }
         }
         return new int[] {};
     }
 
-    /**
-     * 在数组中查找指定元素
-     * 
-     * @param sums   数组
-     * @param target 目标元素
-     * @param index 从指定下标开始寻找
-     * @return 目标元素所在下标，如果不存在返回-1
-     */
-    public int search(int[] sums, int target, int index) {
-        for (int i = index + 1; i < sums.length; i++) {
-            if (sums[i] == target) {
-                return i;
-            }
-        }
-        return -1;
+    @Test
+    void twoSumTest() {
+        System.out.println(Arrays.toString(twoSum(new int[] {3, 2, 4}, 6)));
     }
 }
