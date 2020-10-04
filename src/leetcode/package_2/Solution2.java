@@ -1,26 +1,30 @@
 package leetcode.package_2;
 
+import leetcode.ds.ListNode;
+
 /**
- * Solution
+ * @author Achan
+ * @date 2020/10/4
  */
 public class Solution2 {
 
-    public int lengthOfLongestSubstring(String s) {
-        int result = 0;
-        int temp = 0;
-
-        for (int j = 0; j < s.length(); j++) {
-            char c = s.charAt(j);
-            if (s.substring(temp, j).contains("" + c)) {
-                if (result < j - temp) {
-                    result = j - temp;
-                }
-                temp = s.indexOf(c, temp) + 1;
-            }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
         }
-        if (result < s.substring(temp).length()) {
-            result = s.substring(temp).length();
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
         }
-        return result;
+        return dummyHead.next;
     }
 }
