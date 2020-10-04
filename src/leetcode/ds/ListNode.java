@@ -42,4 +42,9 @@ public class ListNode {
         }
         return builder.toString();
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(val);
+    }
 }
