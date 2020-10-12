@@ -1,5 +1,8 @@
 package leetcode.ds;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * @author Achan
  */
@@ -18,9 +21,20 @@ public class TreeNode {
     }
 
     public static TreeNode buildTree(Integer... values) {
-        TreeNode root = new TreeNode(values[0]);
-        for (int i = 0; i < values.length; i++) {
-            insert(root, values[i], i);
+        ArrayList<Integer> list = new ArrayList<>(values.length);
+        list.addAll(Arrays.asList(values));
+        TreeNode root = new TreeNode(list.get(0));
+        for (int i = 0; i < list.size(); i++) {
+            Integer value = list.get(i);
+            if (value == null) {
+                if (i * 2 + 1 < list.size()) {
+                    list.add(i * 2 + 1, null);
+                }
+                if (i * 2 + 2 < list.size()) {
+                    list.add(i * 2 + 2, null);
+                }
+            }
+            insert(root, value, i);
         }
         return root;
     }
