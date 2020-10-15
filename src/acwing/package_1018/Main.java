@@ -1,4 +1,4 @@
-package acwing.package_1020;
+package acwing.package_1018;
 
 import java.util.Arrays;
 import java.util.Scanner;
