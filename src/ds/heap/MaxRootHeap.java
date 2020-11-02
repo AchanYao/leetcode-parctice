@@ -104,7 +104,7 @@ public class MaxRootHeap<E extends Comparable<E>> {
 
     @Override
     public String toString() {
-        return Arrays.toString(arrayList.toArray());
+        return arrayList.toString();
     }
 }
 
